@@ -20,14 +20,6 @@ if(isset($_POST['action']) && $_POST['action'] == 'cadastro'){
     $concordar = $_POST['concordar'];
     $dataCriacao = date("Y-m-d H:i:s");
 
-    echo "<h5>Nome completo: $nomeCompleto</h5>";
-    echo "<h5>Nome Usuário: $nomeUsuario</h5>";
-    echo "<h5>E-mail Usuário: $emailUsuario</h5>";
-    echo "<h5>Senha Usuário: $senhaUsuario</h5>";
-    echo "<h5>Senha Confirma: $senhaConfirma</h5>";
-    echo "<h5>Concordar: $concordar</h5>";
-    echo "<h5>Data de Criação: $dataCriacao</h5>";
-
 
     //Hash de senha /Codificção de 
     $senha = sha1($senhaUsuario);
@@ -37,7 +29,27 @@ if(isset($_POST['action']) && $_POST['action'] == 'cadastro'){
         echo "<h1>As senhas não conferem</h1>";
         exit();
     }else{
-        echo "<h5> senha codificada: $senha</h5>";
+        //echo "<h5> senha codificada: $senha</h5>";
+        //Verificar se o usuário ja existe no banco de dados
+        $sql = $conecta->prepare("SELECT nomeUsuario, senha FROM usuario WHERE nomeUsuario = ? OR email = ? ");
+        //Substituir cada ? por uma string abaixo
+        $sql->bind_param("ss",$nomeUsuario, $emailUsuario);
+        $sql->execute();
+        $resultado = $sql->get_result();
+        $linha = $resultado->fetch_array(MYSQLI_ASSOC);
+        if($linha['nomeUsuario'] == $nomeUsuario){
+            echo "<p>Nome de usuário indisponível, tente outro</p>";
+        }elseif ($linha['email'] == $emailUsuario){
+            echo "<p>Email já em uso, tente outro</p>";
+        }else{ //Cadastro de usuário
+            $sql = $conecta->prepare("INSERT into usuario (nome, nomeUsuario, email, senha, dataCriacao) values(?, ?, ?, ?, ?)");
+            $sql->bind_param("sssss",$nomeCompleto, $nomeUsuario, $emailUsuario, $senha, $dataCriacao);
+            if($sql->execute()){
+                echo "<p>Registrado com sucesso</p>";
+            }else{
+                echo "<p>Algo deu errado. Tente outra vez.</p>";
+            }
+        }
     }
   
 }else{
