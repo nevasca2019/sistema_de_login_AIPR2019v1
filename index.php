@@ -149,7 +149,11 @@
                         data: $('#formLogin').serialize() + '&action=login',
                         success: function(resposta) {
                             $('#alerta').show();
-                            $('#resultado').html("resposta:" + resposta);
+                            $('#resultado').html(resposta);
+                            if(resposta = "ok"){
+                                //Redirecinamento
+                                window.location = 'profile.php';
+                            }  
                         }
                     });
                 }
