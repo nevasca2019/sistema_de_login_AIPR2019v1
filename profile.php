@@ -14,18 +14,19 @@ require_once 'session.php'
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <h1 class="text-light">Perfil de <?= $usuario ?></h1>
-    <h2 class="text-light">Nome: <?= $nome ?></h2>
-    <h2 class="text-light">E-mail: <?= $email ?></h2>
-    <h2 class="text-light">Data de Cadastro: <?= $dataCriacao ?></h2>
+
+
+
 </head>
 
 <body class="bg-dark">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">WN Systems</a>
+        <a class="navbar-brand" href="#">WD Systems</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+
+
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
@@ -53,7 +54,25 @@ require_once 'session.php'
     </nav>
 
     <main class="container mt-4">
-        <h1 class="text-light">Perfil do usuário</h1>
+
+        <div class="row">
+            <div class="offset-lg-2 col-3">
+                <img src="<?= $urlAvatar ?>" alt="Foto de <?= $usuario ?>"
+                height="200" with="200" />
+            </div>
+            <div class="col-7">
+                <h1 class="text-light">Perfil do usuário</h1>
+                <h2 class="text-light">Nome: <?= $nome ?></h2>
+                <h2 class="text-light">E-mail: <?= $email ?></h2>
+                <h2 class="text-light">Data de Cadastro: <?= $dataCriacao ?></h2>
+            </div>
+        </div>
+
+
+
+
+        <h1 class="text-light">Perfil de <?= $usuario ?></h1>
+
     </main>
 
 

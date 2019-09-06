@@ -1,8 +1,8 @@
 <?php
-     session_start();
-     if(isset($_SESSION['nomeUsuario']))
-     //Bloqueando usuários logados
-     header("location: profile.php");
+session_start();
+if (isset($_SESSION['nomeUsuario']))
+    //Bloqueando usuários logados
+    header("location: profile.php");
 ?>
 
 DOCTYPE html>
@@ -82,6 +82,11 @@ DOCTYPE html>
                     <div class="form-group">
                         <input type="email" name="emailUsuário" id="emailUsuário" class="form-control" placeholder="E-mail de Usuário" required>
                     </div>
+
+                    <div class="form-group">
+                        <input type="url" name="urlAvatar" id="urlAvatar" class="form-control" placeholder="URL para a imagem do seu perfil" required>
+                    </div>
+
                     <div class="form-group">
                         <input type="password" name="senhaUsuário" id="senhaUsuário" class="form-control" placeholder="Digite sua senha" minlength="6" required>
                     </div>
@@ -157,10 +162,10 @@ DOCTYPE html>
                         success: function(resposta) {
                             $('#alerta').show();
                             $('#resultado').html(resposta);
-                            if(resposta === "ok"){
+                            if (resposta === "ok") {
                                 //Redirecinamento
                                 window.location = 'profile.php';
-                            }  
+                            }
                         }
                     });
                 }
@@ -187,7 +192,7 @@ DOCTYPE html>
             $('#btnEnviarEmail').click(function(e) {
                 let formSenha = document.querySelector("#formSenha");
                 if (formSenha.checkValidity()) {
-                    e.preventDefault();//Não recarregar a página
+                    e.preventDefault(); //Não recarregar a página
                     $.ajax({
                         url: 'recebe.php',
                         method: 'post',
