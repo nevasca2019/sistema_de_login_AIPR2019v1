@@ -41,14 +41,17 @@ DOCTYPE html>
                 <h2 class="text-center mt-2">Entrada no sistema</h2>
                 <form id="formLogin" class="p-2">
                     <div class="form-group">
-                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Nome do usuário" minlength="5" required>
+                        <input type="text" name="nomeUsuario" id="nomeUsuario" class="form-control" placeholder="Nome do usuário" minlength="5" required value="<?php if (isset($_COOKIE['nomeUsuario'])) echo $_COOKIE['nomeUsuario']; ?>">
                     </div>
                     <div class="form-group">
                         <input type="password" name="senhaUsuario" id="senhaUsuario" class="form-control" placeholder="Senha" required minlength="6">
                     </div>
                     <div class="form-group mt-5">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="lembrar" id="lembrar" class="custom-control-input">
+                            <input type="checkbox" name="lembrar" id="lembrar" 
+                            class="custom-control-input" 
+                            <?php if (isset($_COOKIE['nomeUsuario'])) 
+                            echo " checked"; ?>>
                             <label for="lembrar" class="custom-control-label">
                                 Lembrar de mim.
                             </label>
@@ -88,7 +91,7 @@ DOCTYPE html>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" name="senhaUsuário" id="senhaUsuário" class="form-control" placeholder="Digite sua senha" minlength="6" required>
+                        <input type="password" name="senhaUsuário" id="senhaUsuário" class="form-control" placeholder="Digite sua senha" minlength="6" required value="<?php if (isset($_COOKIE['senhaUsuario'])) echo $_COOKIE['senhaUsuario']; ?>">
                     </div>
                     <div class="form-group">
                         <input type="password" name="senhaConfirma" id="senhaConfirma" class="form-control" placeholder="Confirme a sua senha" required minlength="6">
