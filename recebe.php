@@ -23,12 +23,12 @@ if(isset($_POST['action']) && $_POST['action'] == 'senha'){
         //Existe o usuário no Banco de Dados
         //Só para testar / debug
         //echo "<p class=\"text-success\">E-mail encontrado</p>";
+        $frase = "Batatinhaquandonasce";
+        $frase_secreta = str_shuffle($frase);
+        $token = substr($frase_secreta, 0, 10);
+        echo "<p>$token</p>";
     }else{
         echo '<p class="text-danger">E-mail não encontrado</p>';
-        $frase = "Batatinhatinhaquandonasce";
-        $frase_secreta = str_shuffle($frase);
-        $token = substr($frase_secreta,0,10);
-        echo "<p>$token</p>";
     }
 }
 
